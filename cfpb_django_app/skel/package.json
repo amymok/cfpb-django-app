@@ -1,0 +1,25 @@
+{
+  "name": "{{app_name}}",
+  "version": "{{app_version}}",
+  "description": "{{app_name}}",
+  "homepage": "{{app_url}}",
+  "author": {
+    "name": "Consumer Financial Protection Bureau",
+    "email": "tech@cfpb.gov",
+    "url": "https://cfpb.github.io/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "{{app_url}}"
+  },
+  "license": "CC0",
+  "keywords": [
+    "college-costs"
+  ],
+  "devDependencies": {
+  },
+  "dependencies": {
+  },
+  "scripts": {
+  }
+}

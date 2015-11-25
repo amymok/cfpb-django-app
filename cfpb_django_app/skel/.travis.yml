@@ -1,0 +1,20 @@
+language: python
+sudo: false
+python:
+    - "2.7"
+    - "3.5"
+install:
+    - pip install -r requirements.txt --user-mirrors
+    - pip install -r requirements_test.txt --user-mirrors
+    - pip install coveralls
+# env:
+#     - DJANGO_SETTINGS_MODULE={{django_proj}}.settings.standalone
+# before_script:
+#     - python manage.py syncdb --noinput
+#     - python manage.py migrate
+#     - python manage.py loaddata test_fixture.json
+# script: 
+#     - ...
+#     - flake8 {{app_name}}
+# after_success:
+#     - coveralls
