@@ -3,13 +3,13 @@ sudo: false
 python:
     - "2.7"
     - "3.5"
-env:
-    - DJANGO=1.6
-    - DJANGO=1.8
+# env:
+#     - DJANGO=1.6
+#     - DJANGO=1.8
 install:
-    - pip install -q Django==$DJANGO --use-mirrors
-    - pip install -r requirements.txt --user-mirrors
-    - pip install -r requirements_test.txt --user-mirrors
+#     - pip install -q Django==$DJANGO
+    - pip install -r requirements.txt
+    - pip install -r requirements_test.txt
     - pip install coveralls
 before_script:
     -  flake8 {{app_name}} --exclude=migrations --ignore=E501,E225
