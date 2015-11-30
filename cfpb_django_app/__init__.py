@@ -42,6 +42,35 @@ def makedirs(path, dry=True):
     return True
 
 
+def makefile(source, dest, replacements={}, dry=True):
+    """ Create a file at the destination using the contents of the
+        source with the given replacements. """
+
+    # Replace any necessary replacements in the destination directory
+    # name
+    for k, v in replacements.items():
+        if k in dest:
+            dest = dest.replace(k, v)
+
+    # Create the destination directories, if they don't exist
+    makedirs(os.path.dirname(dest), dry=dry)
+    
+    logger.info('creating {}'.format(dest))
+
+    if dry:
+        return
+
+    with open(source, 'r', encoding='utf-8') as source_file, \
+            open(dest, 'w', encoding='utf-8') as dest_file:
+        source_str = source_file.read()
+
+        # Replace all our {{...}} varaibles
+        for k, v in replacements.items():
+            source_str = source_str.replace('{{' + k + '}}', v)
+
+        dest_file.write(source_str)
+
+
 def makeapp(name, url, version, template_dir, dest_dir, dry=True):
     """ Create the file structure for a new app with the given name,
         url, and version in the destination direcrory based on the 
@@ -70,25 +99,7 @@ def makeapp(name, url, version, template_dir, dest_dir, dry=True):
             source = os.path.join(root, filename)
             dest = source.replace(template_dir, dest_dir)
 
-            # Replace 'app_name' in the dest string
-            dest = dest.replace('app_name', name)
-
-            makedirs(os.path.dirname(dest), dry=dry)
-            
-            logger.info('creating {}'.format(dest))
-
-            if dry:
-                continue
-
-            with open(source, 'r', encoding='utf-8') as source_file, \
-                    open(dest, 'w', encoding='utf-8') as dest_file:
-                source_str = source_file.read()
-
-                # Replace all our {{...}} varaibles
-                for k, v in replacements.items():
-                    source_str = source_str.replace('{{' + k + '}}', v)
-
-                dest_file.write(source_str)
+            makefile(source, dest, replacements, dry=dry)
 
 
 def main():
@@ -103,7 +114,7 @@ def main():
     parser.add_argument('-t', '--template', 
             default=os.path.join(os.path.dirname(__file__), 'skel'),
             help='app template directory (default: skel/app_name)')
-    parser.add_argument('-d', '--dest', default=os.getcwd(),
+    parser.add_argument('-d', '--dest', default='',
             help='destination path for the django app')
     parser.add_argument('-n', '--dry-run', action="store_true", 
             help='perform a dry run')
@@ -112,6 +123,10 @@ def main():
     #         help='include a django project for local development')
 
     args = parser.parse_args()
+
+    # Add the app name to the current directory if no dest dir is given
+    if args.dest is '':
+        args.dest = os.path.join(os.getcwd(), args.name)
 
     makeapp(args.name, args.url, args.version, args.template,
             args.dest, dry=args.dry_run)

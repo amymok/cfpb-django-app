@@ -23,7 +23,7 @@ setup(
 
     entry_points={
         'console_scripts':['cfpb-django-app = cfpb_django_app:main',]
-    }
+    },
 )
 
 

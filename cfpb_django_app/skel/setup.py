@@ -12,7 +12,7 @@ setup(
     license='CC0',
 
     # Read the version and description from the app itself.
-    version=__import__('{{app_name}}').get_version().replace(' ', '-'),
+    version=__import__('{{app_name}}').__version__,
     description=' '.join(__import__('{{app_name}}'
         ).__doc__.splitlines()).strip(),
 
@@ -43,6 +43,9 @@ setup(
     # NEVER just "read" requirements.txt into install_requires.
     install_requires=[
         'Django>=1.8',
-    ]
+    ],
+
+    # The test runner that allows us to run 'python setup.py test'
+    test_suite = "{{app_name}}_proj.runtests.runtests",
 )
 

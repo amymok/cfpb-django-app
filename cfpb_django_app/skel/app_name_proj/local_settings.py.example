@@ -2,4 +2,3 @@
 
 SECRET_KEY = 'SOMETHING SECRET'
 
-INSTALLED_APPS += ('{{app_name}}',)
