@@ -17,5 +17,3 @@ from django.conf import settings
 # import myapp.settings
 # ...
 # myapp.settings.MY_SETTING
-
-

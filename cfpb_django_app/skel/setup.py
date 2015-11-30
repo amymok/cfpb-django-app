@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import os
-from setuptools import setup, find_packages
+from setuptools import setup
 
 setup(
     name='{{app_name}}',
@@ -13,11 +13,12 @@ setup(
 
     # Read the version and description from the app itself.
     version=__import__('{{app_name}}').__version__,
-    description=' '.join(__import__('{{app_name}}'
-        ).__doc__.splitlines()).strip(),
+    description=' '.join(__import__(
+        '{{app_name}}'
+    ).__doc__.splitlines()).strip(),
 
     # Read the README for the long description
-    long_description=open('README.md').read() \
+    long_description=open('README.md').read() 
             if os.path.exists('README.md') else '',
 
     # Be explicit in only using the app package, and include all data to
@@ -46,6 +47,5 @@ setup(
     ],
 
     # The test runner that allows us to run 'python setup.py test'
-    test_suite = "{{app_name}}_proj.runtests.runtests",
+    test_suite="{{app_name}}_proj.runtests.runtests",
 )
-
