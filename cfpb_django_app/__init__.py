@@ -90,8 +90,8 @@ def makeapp(name, url, version, template_dir, dest_dir, dry=True):
     # Copy each path and file, and do the necessary text substitution
     for root, dirs, files in os.walk(template_dir):
         # Skip any ignored names that are directories
-        # if any([True if root.endswith(i) else False for i in IGNORE]):
-        #     continue
+        if any([True if root.endswith(i) else False for i in IGNORE]):
+            continue
 
         for filename in files:
             # If it's an ignorable file, skip it
