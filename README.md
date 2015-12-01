@@ -40,7 +40,7 @@ Other out-of-the-box features include:
 - `develop.sh` script for setup ease
 - nose and coverage integration for Python testing and code-coverage
 - Tox integration for local multiple environment testing 
-- Travis integration for Travis testing
+- Travis integration for upstream repository testing
 - flake8 integration for Python linting
 - Python 3.4 and 2.7 support
 
@@ -108,5 +108,6 @@ automated testing of the upstream repository. Configuration is included.
 - Include grunt or gulp for front-end building
 - Make front-end build/packaging work
 - Build out front-end sources
+- Include front-end testing frameworks, etc.
 - Integrate front-end testing with Tox and Travis
 
