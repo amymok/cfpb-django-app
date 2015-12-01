@@ -14,7 +14,7 @@ logger.setLevel(logging.INFO)
 
 # This is a list of files in the skeleton that will be ignored
 IGNORE = [
-    '.git', 
+    '.git',
     '.DS_Store',
 ]
 
@@ -72,10 +72,10 @@ def makefile(source, dest, replacements={}, dry=True):
 
 def makeapp(name, url, version, template_dir, dest_dir, dry=True):
     """ Create the file structure for a new app with the given name,
-        url, and version in the destination direcrory based on the 
+        url, and version in the destination direcrory based on the
         template directory."""
 
-    # If we can't make the destination directory, bail 
+    # If we can't make the destination directory, bail
     if not makedirs(dest_dir, dry=dry):
         logger.error('unable to create destination {}'.format(dest_dir))
         sys.exit(1)
@@ -95,7 +95,7 @@ def makeapp(name, url, version, template_dir, dest_dir, dry=True):
 
         for filename in files:
             # If it's an ignorable file, skip it
-            if filename in IGNORE: 
+            if filename in IGNORE:
                 continue
 
             # Get our source and destination paths
@@ -107,20 +107,20 @@ def makeapp(name, url, version, template_dir, dest_dir, dry=True):
 
 def main():
     parser = argparse.ArgumentParser(description='CFPB Django App')
-    parser.add_argument('name', metavar='name', 
+    parser.add_argument('name', metavar='name',
                         help='Python-friendly app name')
     parser.add_argument('--url', default='http://cfpb.github.io/',
                         help='url to the app project')
-    parser.add_argument('--version', default='1.0', 
+    parser.add_argument('--version', default='1.0',
                         help='initial app version')
 
-    parser.add_argument('-t', '--template', 
-                        default=os.path.join(os.path.dirname(__file__), 
+    parser.add_argument('-t', '--template',
+                        default=os.path.join(os.path.dirname(__file__),
                                              'skel'),
                         help='app template directory (default: skel/app_name)')
     parser.add_argument('-d', '--dest', default='',
                         help='destination path for the django app')
-    parser.add_argument('-n', '--dry-run', action="store_true", 
+    parser.add_argument('-n', '--dry-run', action="store_true",
                         help='perform a dry run')
     # This is done by default... it might be nice if it's optional
     # parser.add_argument('-p', '--django-proj', default=False, type=bool,

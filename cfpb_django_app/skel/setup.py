@@ -43,7 +43,7 @@ setup(
     # 
     # NEVER just "read" requirements.txt into install_requires.
     install_requires=[
-        'Django>=1.8',
+        'Django>=1.8, <1.9',
     ],
 
     # The test runner that allows us to run 'python setup.py test'

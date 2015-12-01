@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-{{app_name}}
+{{app_description}}
 """
 
 __version__ = '{{app_version}}'
-

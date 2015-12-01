@@ -27,6 +27,5 @@ setup(
 
     test_suite="cfpb_django_app.tests",
     setup_requires=[
-        "flake8"
     ],
 )

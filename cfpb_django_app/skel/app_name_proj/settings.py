@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'django_nose',
     '{{app_name}}',
 )
 
@@ -103,6 +104,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+NOSE_ARGS = [
+    '--with-coverage',
+    '--cover-erase',
+    '--cover-branches',
+    '--cover-package={{app_name}}',
+]
 
 # Try to import a local_settings module to override parser settings. If
 # it doesn't exist, we must not have needed it anyway.
